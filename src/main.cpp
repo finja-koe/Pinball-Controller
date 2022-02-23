@@ -104,7 +104,7 @@ void makeAllLEDs(int r, int g, int b)
 void verlagerung(float veloLeftState, float veloRightState)
 {
 
-  if((veloLeftState<40 || veloRightState<40)) // if someone stands on the mat
+  if((veloLeftState<80 || veloRightState<80)) // if someone stands on the mat
   {
    
     float diff = veloLeftState - veloRightState;
@@ -230,7 +230,7 @@ void verlagerung(float veloLeftState, float veloRightState)
     } 
     
   }
-  else if(!stateIdx==0)  // jumping
+  else //if(!stateIdx==0)  // jumping
     {
       Keyboard.release(KEY_S);
       Keyboard.release(KEY_D);
@@ -624,10 +624,13 @@ void makeRightState(int left, int right)   // Translate game state to right LED 
 void loop() {
   // put your main code here, to run repeatedly:
   timerFunc();
-  delay(10); //Global delay
+  delay(10); //Global delay //10
 
   float veloLeftState = analogRead(veloLeft);
   float veloRightState = analogRead(veloRight);
+   Serial.println(veloLeftState);
+   Serial.println(veloRightState);
+   Serial.println("---------------");
 
   //Suit gameState to matState (ASCII)
   if(Serial.available()>0)
